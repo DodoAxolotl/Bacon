@@ -1,16 +1,16 @@
 import json
 import math
-import sys
+import argparse
 
 
-def calculate_bacon_distance(name: str) -> float:
-    with open("db.json") as file:
-        db = json.load(file)
+def calculate_bacon_distance(db: dict, name: str) -> float:
+    if "Kevin Bacon" not in db["actors"]:
+        raise ValueError("Actor Kevin Bacon does not exist in our database")
     if name not in db["actors"]:
         raise ValueError(f"The specified actor does not exist in our database")
     distance = 0
     seen_movies = set()
-    seen_actors = set()
+    seen_actors = set(["Kevin Bacon"])
     current_movies = set()
     current_actors = set(["Kevin Bacon"])
     while name not in current_actors:
@@ -39,4 +39,9 @@ def calculate_bacon_distance(name: str) -> float:
 
 
 if __name__ == "__main__":
-    print(calculate_bacon_distance(sys.argv[1]))
+    parser = argparse.ArgumentParser(prog="bacon_distance")
+    parser.add_argument("actor_name")
+    args = parser.parse_args()
+    with open("db.json") as file:
+        db = json.load(file)
+    print(calculate_bacon_distance(db, args.actor_name))
