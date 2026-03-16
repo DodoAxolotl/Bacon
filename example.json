@@ -1,0 +1,19 @@
+{
+    "movies": {
+        "Enter the Game of Death": ["Bolo Yeung", "Kuo-Hsiang Lin", "Marco Mak", "Joseph Velasco"],
+        "Like a Turtle on Its Back": ["Claude Miller", "Dora Baret", "Maurice Jarre"],
+        "Far Away and Long Ago": ["Walter Santa Ana", "Manuel Antin", "Dora Baret", "Gerardo Gandini"]
+    },
+    "actors": {
+        "Bolo Yeung": ["Enter the Game of Death"],
+        "Kuo-Hsiang Lin":["Enter the Game of Death"],
+        "Marco Mak": ["Enter the Game of Death"],
+        "Joseph Velasco": ["Enter the Game of Death"],
+        "Claude Miller": ["Like a Turtle on Its Back"],
+        "Dora Baret": ["Like a Turtle on Its Back", "Far Away and Long Ago"],
+        "Maurice Jarre": ["Like a Turtle on Its Back"],
+        "Walter Santa Ana": ["Far Away and Long Ago"],
+        "Manuel Antin": ["Far Away and Long Ago"],
+        "Gerardo Gandini": ["Far Away and Long Ago"]
+    }
+}
