@@ -1,6 +1,4 @@
-import json
 import math
-import argparse
 
 
 def calculate_bacon_distance(db: dict, name: str) -> float:
@@ -36,12 +34,3 @@ def calculate_bacon_distance(db: dict, name: str) -> float:
         seen_actors.update(current_actors)
         distance += 1
     return distance
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog="bacon_distance")
-    parser.add_argument("actor_name")
-    args = parser.parse_args()
-    with open("db.json") as file:
-        db = json.load(file)
-    print(calculate_bacon_distance(db, args.actor_name))
