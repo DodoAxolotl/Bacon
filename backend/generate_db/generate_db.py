@@ -1,5 +1,6 @@
 import csv
 import json
+from pathlib import Path
 from typing import Dict, Tuple, List
 
 
@@ -8,7 +9,7 @@ def generate_db() -> None:
     movies, actors = get_all_roles(movie_names)
     get_all_actors(movies, actors)
     db = {"movies": movies, "actors": actors}
-    with open("db.json", "w") as file:
+    with open(Path(Path(__file__).parent.parent, "db.json"), "w") as file:
         json.dump(db, file)
 
 
