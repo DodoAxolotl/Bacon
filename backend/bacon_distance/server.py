@@ -13,7 +13,7 @@ def get_bacon_distance(actor: str):
     try:
         return str(calculate_bacon_distance(db, actor))
     except ValueError as error:
-        return flask.jsonify({"error": error.args[0]}), 404
+        return error.args[0], 404
 
 
 if __name__ == "__main__":

@@ -7,23 +7,21 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const calculateBaconDistance = async () => {
-    const response = await fetch(`http://localhost:5000/calc/${actor}`);
-    if (response.ok) {
+    try {  
+      const response = await fetch(`http://localhost:5000/calc/${actor}`);
       const result = await response.text();
-      setBaconDistance(result);
-      setErrorMessage("");
-    }
-    else {
-      const result = await response.json();
+      setBaconDistance(response.ok ? result : "");
+      setErrorMessage(response.ok ? "" : result);
+    } catch (_) {
       setBaconDistance("");
-      setErrorMessage(result["error"]);
+      setErrorMessage("Could not fetch the required data");
     }
   }
 
   return (
     <div>
       <input type="text" onChange={e => setActor(e.target.value)}></input>
-      <button onClick={() => {if (actor.length > 0) {calculateBaconDistance()}}}>Calculate Bacon Distance</button>
+      <button disabled={actor.length === 0} onClick={calculateBaconDistance}>Calculate Bacon Distance</button>
       <p>{errorMessage ? errorMessage : baconDistance}</p>
     </div>
   )
