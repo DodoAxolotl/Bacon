@@ -9,12 +9,12 @@ def generate_db() -> None:
     movies, actors = get_all_roles(movie_names)
     get_all_actors(movies, actors)
     db = {"movies": movies, "actors": actors}
-    with open(Path(Path(__file__).parent.parent, "db.json"), "w") as file:
+    with open(Path(__file__).parent.parent / "db.json", "w") as file:
         json.dump(db, file)
 
 
 def get_all_actors(movies: Dict[str, List[str]], actors: Dict[str, List[str]]) -> None:
-    with open("name.basics.tsv", newline="", encoding="utf-8") as file:
+    with open(Path(__file__).parent / "name.basics.tsv", newline="", encoding="utf-8") as file:
         content = csv.DictReader(file, delimiter="\t")
         for row in content:
             if row["nconst"] in actors:
@@ -30,7 +30,7 @@ def get_all_roles(
 ) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
     movies = {}
     actors = {}
-    with open("title.principals.tsv", newline="", encoding="utf-8") as file:
+    with open(Path(__file__).parent / "title.principals.tsv", newline="", encoding="utf-8") as file:
         content = csv.DictReader(file, delimiter="\t")
         for row in content:
             if row["tconst"] in movie_names and row["characters"] != "\\\\N":
@@ -44,7 +44,7 @@ def get_all_roles(
 
 def get_all_movies() -> Dict[str, str]:
     movie_names = {}
-    with open("title.basics.tsv", newline="", encoding="utf-8") as file:
+    with open(Path(__file__).parent / "title.basics.tsv", newline="", encoding="utf-8") as file:
         content = csv.DictReader(file, delimiter="\t")
         for row in content:
             if row["titleType"] == "movie" and row["startYear"] == "1978":
