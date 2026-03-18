@@ -17,6 +17,6 @@ def get_bacon_distance(actor: str):
 
 
 if __name__ == "__main__":
-    with open(Path(Path(__file__).parent.parent, "db.json")) as file:
+    with open(Path(__file__).parent.parent / "db.json") as file:
         db = json.load(file)
-    server.run(debug=True)
+    server.run(host="0.0.0.0", port=5000)
